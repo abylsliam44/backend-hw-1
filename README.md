@@ -1,95 +1,131 @@
-# Task Management Application
+# Personal Finance Management Application
 
-A full-stack task management application built with FastAPI and modern web technologies.
+A full-stack web application for managing personal finances with features like transaction tracking, budget management, and category-based expense analysis.
 
 ## Features
 
-- User authentication with JWT
-- CRUD operations for tasks
-- PostgreSQL database integration
-- Docker and Docker Compose support
-- CI/CD with GitHub Actions
-- Modern web frontend with Tailwind CSS
+- 🔐 Secure JWT Authentication
+- 💰 Transaction Management
+- 📊 Budget Overview
+- 📋 Category Management
+- 📱 Responsive Design
+- 🔄 Real-time Updates
+
+## Tech Stack
+
+### Backend
+- FastAPI
+- PostgreSQL
+- SQLAlchemy
+- JWT Authentication
+- Docker
+
+### Frontend
+- React
+- TypeScript
+- Tailwind CSS
+- Axios
 
 ## Prerequisites
 
 - Docker and Docker Compose
-- Python 3.9+
-- Node.js (for frontend development)
+- Node.js (v16 or higher)
+- Python 3.8+
+- npm or yarn
 
-## Getting Started
+## Setup Instructions
 
-1. Clone the repository:
+### Backend Setup
+
+1. Navigate to the backend directory:
 ```bash
-git clone <repository-url>
-cd <repository-name>
+cd backend
 ```
 
-2. Create a `.env` file in the root directory:
-```bash
-DATABASE_URL=postgresql://postgres:postgres@db:5432/task_manager
-SECRET_KEY=your-secret-key-change-in-production
-```
-
-3. Start the application using Docker Compose:
-```bash
-docker-compose up --build
-```
-
-The application will be available at:
-- Backend API: http://localhost:8000
-- Frontend: Open `frontend/index.html` in your browser
-
-## API Documentation
-
-Once the application is running, you can access the API documentation at:
-- Swagger UI: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
-
-## Development
-
-### Backend Development
-
-1. Create a virtual environment:
+2. Create and activate a virtual environment:
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the development server:
+4. Start the PostgreSQL database using Docker:
+```bash
+docker-compose up -d
+```
+
+5. Run database migrations:
+```bash
+alembic upgrade head
+```
+
+6. Start the backend server:
 ```bash
 uvicorn app.main:app --reload
 ```
 
-### Frontend Development
+The backend will be available at `http://localhost:8000`
 
-The frontend is a simple HTML/JS application using Tailwind CSS. To modify:
+### Frontend Setup
 
-1. Edit files in the `frontend` directory
-2. Open `frontend/index.html` in your browser
-
-## Testing
-
-Run tests using pytest:
+1. Navigate to the frontend directory:
 ```bash
-pytest
+cd frontend
 ```
 
-## Deployment
+2. Install dependencies:
+```bash
+npm install
+```
 
-The application includes GitHub Actions workflows for CI/CD. To deploy:
+3. Start the development server:
+```bash
+npm run dev
+```
 
-1. Set up the following secrets in your GitHub repository:
-   - `DOCKER_USERNAME`
-   - `DOCKER_PASSWORD`
+The frontend will be available at `http://localhost:5173`
 
-2. Push to the main branch to trigger the workflow
+## API Documentation
 
-## License
+Once the backend is running, you can access:
+- Swagger UI documentation at `http://localhost:8000/docs`
+- ReDoc documentation at `http://localhost:8000/redoc`
 
-MIT 
+## Environment Variables
+
+### Backend (.env)
+```
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/finance_db
+SECRET_KEY=your_secret_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+### Frontend (.env)
+```
+VITE_API_URL=http://localhost:8000
+```
+
+## Default Categories
+
+The application automatically creates default transaction categories for new users:
+- Income
+- Food & Dining
+- Transportation
+- Shopping
+- Bills & Utilities
+- Entertainment
+- Health & Medical
+- Other
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
