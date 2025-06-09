@@ -29,7 +29,6 @@ A full-stack web application for managing personal finances with features like t
 ## Prerequisites
 
 - Docker and Docker Compose
-- Node.js (v16 or higher)
 - Python 3.8+
 - npm or yarn
 
